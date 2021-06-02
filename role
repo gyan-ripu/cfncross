@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  CrossAccountRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              AWS: 328696000111
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: "twe-s3"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+             - 
+               Effect: "Allow"
+               Action: s3:*
+               Resource:
+                - arn:aws:s3:::gyantest123
+                - arn:aws:s3:::gyantest123/*
+      RoleName: "CrossAccountSharingRole"
