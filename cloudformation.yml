@@ -6,6 +6,7 @@
     community.aws.sts_assume_role:
       role_arn: "arn:aws:iam::603651671970:role/ReplatformPipelineBuildRole"
       role_session_name: "someRoleSession"
+      region: "ap-south-1"
     register: assumed_role
     
   - name: create stack
