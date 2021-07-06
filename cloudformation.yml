@@ -8,4 +8,5 @@
       role_session_name: "someRoleSession"
       region: "ap-south-1"
     register: assumed_role
-  
+  - debug:
+      msg: "{{ assumed_role.sts_creds.access_key }}"
