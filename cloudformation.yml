@@ -28,10 +28,13 @@
       aws_access_key: "{{ (sts_creds|default({})).access_key|default() }}"
       aws_secret_key: "{{ (sts_creds|default({})).secret_key|default() }}"
       security_token: "{{ (sts_creds|default({})).session_token|default() }}"
-      stack_name: "SampleWebAppCrossStack"
+      stack_name: "SampleNetworkCrossStack"
       state: "present"
       region: "ap-south-1"
       disable_rollback: true
-      template: "SampleWebAppCrossStack.template"
+      template: "SampleNetworkCrossStack.template"
+      template_parameters:
+        VPCCIDR: "172.21.1.0/24"
+        PublicSubnet1: "172.21.1.0/26"
       tags:
-        Stack: "ansible-cloudformation"
+        Stack: "ansible-cloudformation-vpc"
