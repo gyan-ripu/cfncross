@@ -10,3 +10,4 @@
     register: assumed_role
   - debug:
       msg: "{{ assumed_role.sts_creds.access_key }}"
+      msg: "{{ assumed_role.sts_creds.secret_key }}"
