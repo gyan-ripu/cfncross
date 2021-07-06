@@ -8,13 +8,4 @@
       role_session_name: "someRoleSession"
       region: "ap-south-1"
     register: assumed_role
-    
-  - name: tag
-    amazon.aws.ec2_tag:
-      aws_access_key: "{{ assumed_role.sts_creds.access_key }}"
-      aws_secret_key: "{{ assumed_role.sts_creds.secret_key }}"
-      security_token: "{{ assumed_role.sts_creds.session_token }}"
-      resource: i-04c65d0ccd987d26f
-      state: present
-      tags:
-        Name: test
+  
