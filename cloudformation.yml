@@ -12,4 +12,6 @@
       msg: "{{ assumed_role.sts_creds.access_key }}"
   - debug:
       msg: "{{ assumed_role.sts_creds.secret_key }}"
+  - debug:
+      msg: "{{ assumed_role.sts_creds.session_token }}"
       
