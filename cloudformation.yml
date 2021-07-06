@@ -15,12 +15,23 @@
   - debug:
       msg: "{{ assumed_role.sts_creds.session_token }}"
       
-  - amazon.aws.ec2_tag:
-      aws_access_key: "{{ assumed_role.sts_creds.access_key }}"
-      aws_secret_key: "{{ assumed_role.sts_creds.secret_key }}"
-      security_token: "{{ assumed_role.sts_creds.session_token }}"
-      resource: i-04c65d0ccd987d26f
-      state: present
+  #- amazon.aws.ec2_tag:
+      #aws_access_key: "{{ assumed_role.sts_creds.access_key }}"
+      #aws_secret_key: "{{ assumed_role.sts_creds.secret_key }}"
+      #security_token: "{{ assumed_role.sts_creds.session_token }}"
+      #resource: i-04c65d0ccd987d26f
+      #state: present
+      #tags:
+        #Name: test
+  - name: create stack
+    amazon.aws.cloudformation:
+      aws_access_key: "{{ (sts_creds|default({})).access_key|default() }}"
+      aws_secret_key: "{{ (sts_creds|default({})).secret_key|default() }}"
+      security_token: "{{ (sts_creds|default({})).session_token|default() }}"
+      stack_name: "SampleWebAppCrossStack"
+      state: "present"
+      region: "ap-south-1"
+      disable_rollback: true
+      template: "SampleWebAppCrossStack.template"
       tags:
-        Name: test
-      
+        Stack: "ansible-cloudformation"
